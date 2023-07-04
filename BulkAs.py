@@ -1,8 +1,7 @@
 import json
 
 with open('pets.json') as pet_file:
-    string = pet_file.read()
-    data = json.loads(string)
+    data = json.load(pet_file)
 
 for item in data:
     if type(data[item]) == list:
