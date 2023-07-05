@@ -2,7 +2,7 @@ import requests
 from datetime import datetime
 
 town = input('Введите город: ')
-#print(result)
+# print(result)
 
 key = 'ecc157672d5737c76936a7f7171672de'
 url = 'http://api.openweathermap.org/data/2.5/weather'
@@ -21,4 +21,6 @@ print(datetime.utcfromtimestamp(raw_time_sunset).strftime("%H:%M"))
 print(f'Координаты:{result["coord"]["lon"]}, {result["coord"]["lat"]}')
 print(result['weather'][0]['main'])
 if result['weather'][0]['main'] == 'Rain':
-    print('Дождь')
+
+ #new
+
