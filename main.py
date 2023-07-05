@@ -1,6 +1,6 @@
 from tkinter import *  # подключаем элементы tkinter
 from tkinter import filedialog  # для выбора картинки
-from PIL import Image, ImageTk, ImageFilter  # для обработки изображений
+from PIL import Image, ImageTk, ImageFilter, ImageEnhance  # для обработки изображений
 import os
 
 
@@ -56,6 +56,10 @@ class App():
         self.image = ImageTk.PhotoImage(blur_image)
         self.canvas.create_image(0, 0, anchor=NW, image=blur.image)
 
-
+       def sharp(self):
+        sharper = ImageEnhance.Sharpness(self.orig)
+        sharp_img = sharper.enhance(5.0)
+        self.image = ImageTk.PhotoImage(sharp_img)
+        self.canvas.create_image(0, 0, anchor=NW, image=self.image)
 if __name__ == '__main__':
     app = App()
