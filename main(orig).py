@@ -69,5 +69,5 @@ class App():
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main(orig)__':
     app = App()
