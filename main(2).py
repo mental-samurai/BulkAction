@@ -11,6 +11,7 @@ from PIL import Image, ImageTk, ImageFilter, ImageEnhance
 class App():
 
     def __init__(self):
+        self.time_to_show = None
         self.window = Tk()  # создали окно
         self.window.title('Обработка картинки')  # заголовок окна
         self.window.geometry('800x600')  # размер окна
@@ -81,22 +82,6 @@ class App():
         self.time_to_show = datetime.time(datetime.now()).strftime("%H:%M:%S")
         self.dtime['text'] = self.time_to_show
         self.dtime.after(1000, self.show_time)
-
-   def open(self):
-        response = requests.get(self.geocoder_request)
-        info = response.json()
-        coords = (info['response']['GeoObject']['featureMember']['GeoObject']['Point']['pos'])
-        coords = ', '.join(coords.split())
-        delta = '0.0005,0.0005'
-        map_param = {
-            'll': 'coords',
-            'spn': 'delta',
-            'l': 'map'
-        }
-        api_server = 'http://static-maps.yandex.ru/1.x/'
-        image_map = requests.get(api_server, params=map_param)
-        pict_to_show = Image.open(BytesIO(image_map.content))
-        self.canvas.create_image(0, 0, anchor=NW, image=self.image)
 
 
 if __name__ == '__main__':
