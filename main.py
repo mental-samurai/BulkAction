@@ -1,6 +1,7 @@
-from tkinter import *  # подключаем элементы tkinter
+from tkinter import *  # подключаем элементы tkinter (PYQt5) UI DEsiGn
 from tkinter import filedialog  # для выбора картинки
 from PIL import Image, ImageTk, ImageFilter, ImageEnhance  # для обработки изображений
+from datetime import datetime
 import os
 
 
@@ -29,6 +30,8 @@ class App():
         self.orig = Image.new('RGB', (600, 400), (255, 255, 255))
         self.window.mainloop()  # ожидание цикл
 
+        self.apikey = '40d1649f-0493-4b70-98ba-98533de7710b'
+        self.geocoder_request = f'http://geocode-maps.yandex.ru/1.x/?apikey=&geocode=Город&format=json'
     def add(self):
         try:
             fullpath = filedialog.askopenfilename(title='Выбор картинки',
@@ -54,12 +57,28 @@ class App():
     def blur(self):
         blur_image = self.orig.filter(ImageFilter.BLUR)
         self.image = ImageTk.PhotoImage(blur_image)
-        self.canvas.create_image(0, 0, anchor=NW, image=blur.image)
+        self.canvas.create_image(0, 0, anchor=NW, image=self.image)
+
 
        def sharp(self):
         sharper = ImageEnhance.Sharpness(self.orig)
         sharp_img = sharper.enhance(5.0)
         self.image = ImageTk.PhotoImage(sharp_img)
         self.canvas.create_image(0, 0, anchor=NW, image=self.image)
+self.sharp.pack(anchor=N)
+        self.dtime = Label(background='#ffffff')
+        self.dtime.place(x=310, y=530)
+        self.cwd=os.getcwd()
+        self.image = None
+        self.image = Image.new('RGB', (600, 400), (255, 255, 255))
+        self.show_time()
+        self.window.mainloop()
+
+    def show_time(self):
+        self.time_to_show = datetime.time(datetime.now()).strftime("%H:%M:%S")
+        self.dtime['text'] = self.time_to_show
+        self.dtime.after(1000, self.show_time)
+
+
 if __name__ == '__main__':
     app = App()
