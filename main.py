@@ -1,13 +1,17 @@
-from tkinter import *  # подключаем элементы tkinter (PYQt5) UI DEsiGn
-from tkinter import filedialog  # для выбора картинки
-from PIL import Image, ImageTk, ImageFilter, ImageEnhance  # для обработки изображений
-from datetime import datetime
 import os
+from tkinter import Tk, Entry, Button, Label, Canvas, CENTER, X, LEFT, N, PhotoImage, \
+    NW  # подключаем элементы tkinter (PYQt5) UI DEsiGn
+from tkinter import filedialog  # для выбора картинки
+from io import BytesIO
+import requests
+from PIL import Image, ImageTk, ImageFilter, ImageEnhance
+
 
 
 class App():
 
     def __init__(self):
+        self.w = None
         self.window = Tk()  # создали окно
         self.window.title('Обработка картинки')  # заголовок окна
         self.window.geometry('800x600')  # размер окна
@@ -60,12 +64,12 @@ class App():
         self.canvas.create_image(0, 0, anchor=NW, image=self.image)
 
 
-       def sharp(self):
+    def sharp(self):
         sharper = ImageEnhance.Sharpness(self.orig)
         sharp_img = sharper.enhance(5.0)
         self.image = ImageTk.PhotoImage(sharp_img)
         self.canvas.create_image(0, 0, anchor=NW, image=self.image)
-self.sharp.pack(anchor=N)
+
         self.dtime = Label(background='#ffffff')
         self.dtime.place(x=310, y=530)
         self.cwd=os.getcwd()

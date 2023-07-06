@@ -14,13 +14,21 @@ class App:
         self.window.geometry('800x600')  # размер окна
         self.window.resizable(False, False)  # запрет на изменение размера окна
         self.window.iconphoto(False, PhotoImage(file='icon_dog.png'))
+        self.label = Label(text='Поиск по картинке', background='#ffff00', foreground='red',
+                           font=('Georgia', 16))
+        self.label.pack(fill=X, pady=5)
+        self.canvas = Canvas(bg='white', width=600, height=400)
+        self.canvas.pack(anchor=CENTER, pady=5)
+        self.load = Button(text='Открыть в', command='add')
+        self.load.pack(anchor=N, side=LEFT, padx=5, fill=X, expand=True)
+        self.cwd = os.getcwd()
+        self.image = None
+        self.orig = Image.new('RGB', (600, 400), (255, 255, 255))
         self.apikey = '40d1649f-0493-4b70-98ba-98533de7710b'
         self.name = 'СПб, Можайская, 2 '
         self.geocoder_request = f'http://geocode-maps.yandex.ru/1.x/?apikey=&geocode={self.apikey}&kind=metro&format' \
                                 f'=json'
-        self.label = Label(text='Поиск по картинке', background='#ffff00', foreground='red',
-                           font=('Georgia', 16))
-        self.label.pack(fill=X, pady=5)
+
         self.canvas = Canvas(bg='white', width=600, height=400)
         self.canvas.pack(anchor=CENTER, pady=5)
         self.load = Button(text='Найти', command='add')

@@ -24,7 +24,7 @@ list_of_geo = [
     "http://geocode-maps.yandex.ru/1.x/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&geocode=Уфа&format=json",
     "http://geocode-maps.yandex.ru/1.x/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&geocode=Нижний Новгород&format=json",
     "http://geocode-maps.yandex.ru/1.x/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&geocode=Калининград&format=json"
-    ]
+]
 for geocoder_request in list_of_geo:
     response = requests.get(geocoder_request)
     if response:
@@ -51,7 +51,6 @@ for geocoder_request in list_of_geo:
         print(geocoder_request)
         print("Http статус:", response.status_code, "(", response.reason, ")")
 
-
 geocoder_request = 'Петровки, 38'
 response = requests.get(
     f"http://geocode-maps.yandex.ru/1.x/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&geocode={geocoder_request}&format=json")
@@ -64,8 +63,6 @@ else:
     print("Ошибка выполнения запроса:")
     print(geocoder_request)
     print("Http статус:", response.status_code, "(", response.reason, ")")
-
-
 
 response = None
 map_request = "http://static-maps.yandex.ru/1.x/?ll=133.795384,-25.694768&spn=30,30&l=sat"
