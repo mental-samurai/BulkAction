@@ -3,7 +3,6 @@
 # ('../other') - выйти из текущей директории
 # ('other') - в корне (на данном уровне с main.py)
 # ('../../other')
-
 from flask import Flask
 
 app = Flask(__name__)
